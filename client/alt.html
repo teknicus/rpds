@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <!---script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.2.6/dist/web3.min.js"></script>
+
+</head>
+<body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.43.195:8080"));
+        }
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+
+        var rpds = new web3.eth.Contract([
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_aadhar",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_rice",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_sugar",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_wheat",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_kerosene",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "addPerson",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_aadhar",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "findPerson",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "people",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_aadhar",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_rice",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_sugar",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_wheat",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_kerosene",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "peopleCount",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_aadhar",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_kerosene",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transactKerosene",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_aadhar",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_rice",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transactRice",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_aadhar",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_sugar",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transactSugar",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_aadhar",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_wheat",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transactWheat",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ], '0x7FbAc417B398eA6b2063C73E13D909D54485Bdad');
+        var version = web3.version; // "1.0.0"
+        console.log(version);
+
+        //rpds.addPerson(111122223333,'Abu Bakar',3,4,4,6);
+        /*
+        web3.eth.getBlock(48, function(error, result){
+            if(!error)
+                console.log(JSON.stringify(result));
+            else
+                console.error(error);
+        })
+*/
+
+        //console.log(rpds);
+        //console.log(Web3.version);
+
+        //console.log(rpds.methods.addPerson(111122223333,"Shashi",2,3,4,5));
+        //console.log(rpds.methods.getPerson(111122223333));
+
+        //rpds.methods['findPerson(uint)'](111122223333);
+
+        rpds.methods.findPerson(333344445555).call({from: '0xDB49c393EF8b701bEeB169364ecED8c98Bc23146'}, function(error, result){
+
+            if(!error) {
+                console.log(result);     //console.log(JSON.stringify(result));
+                //var person = JSON.parse(result);
+                document.getElementById("name-field").innerText = JSON.stringify(result[1]);
+                document.getElementById("num-field").innerText = JSON.stringify(result[0]);
+                document.getElementById("rice-field").innerText = JSON.stringify(result[2]);
+                document.getElementById("sugar-field").innerText = JSON.stringify(result[3]);
+                document.getElementById("wheat-field").innerText = JSON.stringify(result[4]);
+                document.getElementById("kerosene-field").innerText = JSON.stringify(result[5]);
+            }
+            else
+                console.error(error);
+        });
+
+/*
+        rpds.methods.addPerson(333344445555,"Shashi",2,3,4,5).send({from: '0xDB49c393EF8b701bEeB169364ecED8c98Bc23146'})
+            .then(function(receipt){
+                console.log(receipt);// receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+            });
+*/
+/*        rpds.methods.transactKerosene(333344445555,2).send({from: '0xDB49c393EF8b701bEeB169364ecED8c98Bc23146'})
+            .then(function(receipt){
+                console.log(receipt);// receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+            });
+*/
+    });
+
+
+
+</script>
+<nav>
+    <div class="nav-wrapper teal lighten-2">
+        <a href="#" class="brand-logo center">RPDS Kiosk (நியாயவிலை கடை)</a>
+    </div>
+</nav>
+<div class="row">
+    <div class="col s12 m6">
+        <div class="row">
+            <div class="card orange lighten-1">
+                <div class="card-content white-text center-align">
+                    <span class="card-title">Purchase (பொருளைத் தேர்ந்தெடுக்கவும்)</span>
+                    <!--
+                        <select class="browser-default">
+                            <option value="" disabled selected>Choose your option (நீங்கள் விரும்புவதைத் தேர்வுசெய்க)</option>
+                            <option value="1">Rice (அரிசி)</option>
+                            <option value="2">Sugar (சர்க்கரை)</option>
+                            <option value="3">Kerosene (மண்ணெண்ணெய்)</option>
+                        </select>
+                        --->
+                    <form action="#" class="left-align">
+                        <p>
+                            <label>
+                                <input class="with-gap black-text" name="group3" id="rice-radio" type="radio" checked />
+                                <span class="white-text">Rice (அரிசி)</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap black-text" name="group3" id="sugar-radio" type="radio" checked />
+                                <span class="white-text">Sugar (சர்க்கரை)</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap black-text" name="group3" id="kerosene-radio" type="radio" checked />
+                                <span class="white-text">Kerosene (மண்ணெண்ணெய்)</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap black-text" name="group3" id="wheat-radio" type="radio" checked />
+                                <span class="white-text">Wheat (கோதுமை)</span>
+                            </label>
+                        </p>
+                    </form>
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label class="white-text" for="last_name">Quantity (அளவு)</label>
+                    </div>
+                    <br>
+                    <a class="waves-effect waves-light btn">Buy (வாங்க)</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card orange lighten-1">
+                <div class="card-content white-text">
+                    <span class="card-title white-text">Personal Details (நீங்கள் விரும்புவதைத் தேர்வுசெய்க)</span>
+                    <div class="row">
+                        <div class="col s12 m8">
+                            <div class="row">
+                                <a class="white-text">Name (பெயர்): </a>
+                                <a class="white-text" id="name-field">.......</a>
+                            </div>
+                            <div class="row">
+                                <a class="white-text">Aadhaar Card Number (ஆதார் அட்டை எண்): </a>
+                                <a class="white-text" id="num-field">.......</a>
+                            </div>
+                        </div>
+                        <div class="col s12 m4">
+                            <img src="img/avatar.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m6">
+
+            <div class="card orange lighten-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Remaining Quota</span>
+                    <ul class="collection">
+                        <li class="collection-item black-text">
+                            <div>
+                                <a>Rice (அரிசி)</a>
+                                <a class="-text right-align" id="rice-field">.......</a>
+
+                            </div>
+                        </li>
+                        <li class="collection-item black-text">
+                            <div>
+                                <a>Sugar (சர்க்கரை)</a>
+                                <a class="-text right-align" id="sugar-field">.......</a>
+
+                            </div>
+                        </li>
+                        <li class="collection-item black-text">
+                            <div>
+                                <a>Kerosene (மண்ணெண்ணெய்)</a>
+                                <a class="-text right-align" id="kerosene-field">.......</a>
+
+                            </div>
+
+                        </li>
+                        <li class="collection-item black-text">
+                            <div>
+                                <a>Wheat (கோதுமை)</a>
+                                <a class="-text right-align" id="wheat-field">.......</a>
+
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+    </div>
+</div>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
+
